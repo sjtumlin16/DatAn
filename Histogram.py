@@ -4,13 +4,13 @@
 import math
 import time  
 
+fileName = "CocaColaVolume"
 maxVal = -10000000.0
 minVal = 10000000.0
 maxBin = 0
-row = [0]*8
 
 #Inputs
-fid = open("CocaColaVolume.txt","r")
+fid = open(fileName + ".txt","r")
 x_list = fid.readlines()
 fid.close()
 for i in range(len(x_list)):
@@ -29,6 +29,7 @@ interval = (maxVal - minVal) / num
 Bin = [0]*num
 top = [0]*num
 bottom = [0]*num
+row = [0]*(2 + num)
 
 i = -1
 
@@ -43,22 +44,6 @@ while top[i] < maxVal:
             Bin[i] = Bin[i] + 1
 Bin[len(Bin) - 1] = Bin[len(Bin) - 1] + 1
 
-# for k in range(n):
-#     if x_list[k] < 0.996 :
-#         Bin[0] = Bin[0] + 1
-#     elif x_list[k] < 1.004:
-#         Bin[1] = Bin[1] + 1
-#     elif x_list[k] < 1.013:
-#         Bin[2] = Bin[2] + 1
-#     elif x_list[k] < 1.021:
-#         Bin[3] = Bin[3] + 1
-#     elif x_list[k] < 1.030:
-#         Bin[4] = Bin[4] + 1
-#     elif x_list[k] <= 1.034:
-#         Bin[5] = Bin[5] + 1
-#     elif x_list[k] <= 1.038:
-#         Bin[6] = Bin[6] + 1
-
 #Print Bin Data
 for k in range(num):
     b = k + 1
@@ -67,22 +52,27 @@ for k in range(num):
         maxBin = Bin[k]
 
 print(" \n")
+print(fileName + " Distribution\n")
 
 #Indexing and Printing Histogram
 for i in range(maxBin, -1, -1):
     row[0] = i + 1
+    row[1] = " |"
     for k in range(num):
         if Bin[k] >= i + 1:
-            row[k+1] = "|//|"
+            row[k+2] = "|//|"
         elif  Bin[k] == i:
-            row[k+1] = " __ "
+            row[k+2] = " __ "
         else:
-            row[k+1] = "    "
+            row[k+2] = "    "
     if row[0] >= 10:
-        row[2] = "   "
+        row[1] = "|"
     
-    for j in range(num + 1):
+    for j in range(num + 2):
         print("{0}".format(row[j]), end="", flush=True)
         time.sleep(0.015)
     print("\n", end="", flush=True)
+
+for k in range(num * 4 + 3):
+    print("‾", end="", flush=True)
 print("\n")
