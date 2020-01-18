@@ -20,10 +20,9 @@ for i in range(len(x_list)):
     if x_list[i] < minVal:
         minVal = x_list[i]
 
-
 #Analysis
 n = len(x_list)
-num = 1 + 3.322 * (math.log10(n))
+num = 1 + 3.25 * (math.log10(n))
 num = int(math.ceil(num))
 interval = (maxVal - minVal) / num
 Bin = [0]*num
