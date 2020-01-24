@@ -25,10 +25,10 @@ n = len(x_list)
 num = 1 + 3.25 * (math.log10(n))
 num = int(math.ceil(num))
 interval = (maxVal - minVal) / num
-Bin = [0]*num
-top = [0]*num
-bottom = [0]*num
-row = [0]*(2 + num)
+Bin = [0] * num
+top = [0] * num
+bottom = [0] * num
+row = [0] * (2 + num)
 
 i = -1
 
@@ -59,19 +59,19 @@ for i in range(maxBin, -1, -1):
     row[1] = " |"
     for k in range(num):
         if Bin[k] >= i + 1:
-            row[k+2] = "|//|"
+            row[k + 2] = "|//|"
         elif  Bin[k] == i:
-            row[k+2] = " __ "
+            row[k + 2] = " __ "
         else:
-            row[k+2] = "    "
+            row[k + 2] = "    "
     if row[0] >= 10:
         row[1] = "|"
     
     for j in range(num + 2):
-        print("{0}".format(row[j]), end="", flush=True)
+        print("{0}".format(row[j]), end = "", flush = True)
         time.sleep(0.015)
     print("\n", end="", flush=True)
 
 for k in range(num * 4 + 3):
-    print("‾", end="", flush=True)
+    print("‾", end = "", flush = True)
 print("\n")
